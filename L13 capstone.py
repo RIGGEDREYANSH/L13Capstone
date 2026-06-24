@@ -81,3 +81,43 @@ class UnifiedApp(tk.Tk):
                         rowheight=26,
                         font=("Segoe UI", 10))
         style.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"))
+
+    def _build_header(self):
+        header_h = 90
+        self.header_canvas = tk.Canvas(self, height=header_h, highlightthickness=0, bd=0)
+        self.header_canvas.pack(fill="x")
+        self._draw_gradient(self.header_canvas,0,0, self.winfo_screenmmwidth(), header_h,
+                            PALLETTE["header_start"], PALLETTE["header_mid"], PALLETTE["header_end"])
+        self.header_canvas.create_text(24, header_h//2 - 10, anchor="w",
+                                       text="Student Performance Tracker - Unified Window",
+                                       font=("Segoe UI", 20, "bold"), fill="white")
+        self.header_canvas.create_text(24, header_h//2 + 16, anchor="w",
+                                       text="Tracker, Search, Topper, CSV, Reports + All Activities in tabs",
+                                       fint=("Segoe UI", 11), fill="#435C76")
+        
+    def _draw_gradient(Self, canas, x1, y1, x2, y2, c1, c2, c3, steps=256):
+        r1, g1, b1 = self.winfo_rgb(c1); r2, g2, b2, = self.winfo_rgb(c2); r3, g3, b3 = self.winfo_rgb(c3)
+        for i in range(steps//2):
+            r = int(r1 + (r2-r1) * i / (steps//2)); g = (g1 + (g2-g1) * i / (steps//2)); b = (b1 + (b2-b1) * i / (steps//2));
+            color = f"#{r//256:02x}{g//256:02x}{b//256:02x}"
+            y = y1 + (y2 - y1) * i / steps
+            canvas.create_rectangle(x1, y, x2, y + (y2-y1)/steps, outline="", fill=color)
+        for i in range(steps//2):
+            r = int(r2 + (r3-r2) * i / (steps//2)); g = (g2 + (g3-g2) * i / (steps//2)); b = (b2 + (b3-b2) * i / (steps//2));
+            color = f"#{r//256:02x}{g//256:02x}{b//256:02x}"
+            y = y1 + (y2 - y1) * (i+steps//2) / steps
+            canvas.create_rectangle(x1, y, x2, y + (y2-y1)/steps, outline="", fill=color)
+
+class TrackerFrame(ttk.Frame):
+    def __init__(self. parent)L
+    super().__init__(parent, style="TFrame")
+    self.students: List[Student] = []
+
+    self._build.body()
+    self._build_events()
+    
+def _build_body(self):
+    root = ttk.Frame(self, style="TFrame")
+     
+    left = ttk.Frame(root, style="TFrame"); root.pack(side="left", fill="y", padx=(0,10), pady=8)
+    right = ttk.Frame(root, style="TFrame"); root.pack(side="left", fill="both", expand=True, pady=8)
