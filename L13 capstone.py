@@ -123,4 +123,4 @@ def _build_body(self):
     right = ttk.Frame(root, style="TFrame"); root.pack(side="left", fill="both", expand=True, pady=8)
 
     title = ttk.Label(left, text="Student Input", font=("Segoe UI", 12, "bold")); title.pack(anchor="w", pady=(6,6), padx=8)
-    frm= = ttk.Frame(left, style="Tframe"); frm.pack(fill="x", padx=8)
+    frm = ttk.Frame(left, style="Tframe"); frm.pack(fill="x", padx=8)
