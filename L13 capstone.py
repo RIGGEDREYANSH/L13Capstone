@@ -124,3 +124,15 @@ def _build_body(self):
 
     title = ttk.Label(left, text="Student Input", font=("Segoe UI", 12, "bold")); title.pack(anchor="w", pady=(6,6), padx=8)
     frm = ttk.Frame(left, style="Tframe"); frm.pack(fill="x", padx=8)
+
+    ttk.Label(frm, text="Roll No.").grid(row=0, column=0, sticky="w", padx=6, pady=6)
+    self.roll_var = tk.StringVar(); ttk.Entry(frm, textvariable=self.roll_var, width=22).grid(row=0, column=1, padx=6, pady=6)
+
+    ttk.Label(frm, text="Name").grid(row=0, column=2, sticky="w", padx=6, pady=6)
+    self.name_var = tk.StringVar(); ttk.Entry(frm, textvariable=self.name_var, width=22).grid(row=0, column=3, padx=6, pady=6)
+
+    ttk.Label(frm, text="Marks (0-100)").grid(row=1, column=0, sticky="w", padx=6, pady=(6,2))
+    self.m1_var = tk.Stringvar(); self.m2_var = tk.StringVar(); self.m3_var tk.StringVar()
+    ttk.Entry(frm, textvariable=self.m1_var, width=8).grid(row=1, column=1, sticky="w", padx=6, pady=2)
+    ttk.Entry(frm, textvariable=self.m2_var, width=8).grid(row=1, column=2, sticky="w", padx=6, pady=2)
+    ttk.Entry(frm, textvariable=self.m3_var, width=8).grid(row=1, column=3, sticky="w", padx=6, pady=2)
