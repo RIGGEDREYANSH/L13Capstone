@@ -109,12 +109,12 @@ class UnifiedApp(tk.Tk):
             canvas.create_rectangle(x1, y, x2, y + (y2-y1)/steps, outline="", fill=color)
 
 class TrackerFrame(ttk.Frame):
-    def __init__(self. parent)L
-    super().__init__(parent, style="TFrame")
-    self.students: List[Student] = []
+    def __init__(self, parent):
+        super().__init__(parent, style="TFrame")
+        self.students: List[Student] = []
 
-    self._build.body()
-    self._build_events()
+        self._build.body()
+        self._build_events()
     
 def _build_body(self):
     root = ttk.Frame(self, style="TFrame")
@@ -132,7 +132,7 @@ def _build_body(self):
     self.name_var = tk.StringVar(); ttk.Entry(frm, textvariable=self.name_var, width=22).grid(row=0, column=3, padx=6, pady=6)
 
     ttk.Label(frm, text="Marks (0-100)").grid(row=1, column=0, sticky="w", padx=6, pady=(6,2))
-    self.m1_var = tk.Stringvar(); self.m2_var = tk.StringVar(); self.m3_var tk.StringVar()
+    self.m1_var = tk.StringVar(); self.m2_var = tk.StringVar(); self.m3_var=tk.StringVar()
     ttk.Entry(frm, textvariable=self.m1_var, width=8).grid(row=1, column=1, sticky="w", padx=6, pady=2)
     ttk.Entry(frm, textvariable=self.m2_var, width=8).grid(row=1, column=2, sticky="w", padx=6, pady=2)
     ttk.Entry(frm, textvariable=self.m3_var, width=8).grid(row=1, column=3, sticky="w", padx=6, pady=2)
