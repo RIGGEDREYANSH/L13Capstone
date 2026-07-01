@@ -139,25 +139,29 @@ def _build_body(self):
     
     btns = ttk.Frame(left, style="Tframe"); btns.pack(fill="x", pady=(10,6), padx=8)
     self.add_update_btn = ttk.Buttons(btns, text="Add / Update", command=self.add_or_update_student);
-    self.add_update_btn.grid(row=0, column=0, padx=4, pady=4 sticky="ew)
+    self.add_update_btn.grid(row=0, column=0, padx=4, pady=4, sticky="ew")
     self.delete_btn = ttk.Buttons(btns, text="Delete", command=self.delete_student);
-    self.delete_btn.grid(row=0, column=1, padx=4, pady=4 sticky="ew)
+    self.delete_btn.grid(row=0, column=1, padx=4, pady=4, sticky="ew")
     self.clear_btn = ttk.Buttons(btns, text="Clear Inputs", command=self.clear_student);
-    self.clear_btn.grid(row=0, column=2, padx=4, pady=4 sticky="ew)
+    self.clear_btn.grid(row=0, column=2, padx=4, pady=4, sticky="ew")
 
     self.search_btn = ttk.Buttons(btns, text="Search", command=self.search_student);
-    self.search_btn.grid(row=1, column=0, padx=4, pady=4 sticky="ew)
+    self.search_btn.grid(row=1, column=0, padx=4, pady=4, sticky="ew")
 
     self.topper_btn = ttk.Buttons(btns, text="Show Topper", command=self.show_topper);
-    self.topper_btn.grid(row=1, column=1, padx=4, pady=4 sticky="ew)
+    self.topper_btn.grid(row=1, column=1, padx=4, pady=4, sticky="ew")
 
     self.reset_btn = ttk.Buttons(btns, text="Reset All", command=self.reset_all);
-    self.reset_btn.grid(row=1, column=2, padx=4, pady=4 sticky="ew)
+    self.reset_btn.grid(row=1, column=2, padx=4, pady=4,    sticky="ew")
 
     self.save_btn = ttk.Button(btns, text="Save CSV", command=self.save_to_csv);
-    self.save_btn.grid(row=2, column=0, padx=4 pady=4, sticky="ew")    
+    self.save_btn.grid(row=2, column=0, padx=4, pady=4, sticky="ew")    
     self.load_btn = ttk.Button(btns, text="Load CSV", command=self.load_from_csv);
-    self.load_btn.grid(row=2, column=1, padx=4 pady=4, sticky="ew")    
+    self.load_btn.grid(row=2, column=1, padx=4, pady=4, sticky="ew")    
     self.export_btn = ttk.Button(btns, text="Export Report", command=self.export_report);
-    self.save_btn.grid(row=2, column=2, padx=4 pady=4, sticky="ew")    
+    self.export_btn.grid(row=2, column=2, padx=4, pady=4, sticky="ew") 
 
+    for i in range(3): btns.grid_columnconfigure(i, weight=1)   
+
+    table_lbl = ttk.Label(right, text="Student Records", style="Header.TLabel");
+    table_lbl.pack(anchor="w", padx=(0,6), pady=6)
