@@ -167,5 +167,5 @@ def _build_body(self):
     table_lbl.pack(anchor="w", padx=(0,6), pady=6)
     columns =("roll", "name", "m1", "m2", "m3", "total", "average", "grade")
     self.tree = ttk.Treeview(right,column=columns, show="headings", selectmode="browse")
-    self.tree.pack(fill"both", expand=True, padx=6)
+    self.tree.pack(fill="both", expand=True, padx=6)
 
