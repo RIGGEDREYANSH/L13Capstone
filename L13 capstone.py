@@ -135,4 +135,12 @@ def _build_body(self):
     self.m1_var = tk.StringVar(); self.m2_var = tk.StringVar(); self.m3_var=tk.StringVar()
     ttk.Entry(frm, textvariable=self.m1_var, width=8).grid(row=1, column=1, sticky="w", padx=6, pady=2)
     ttk.Entry(frm, textvariable=self.m2_var, width=8).grid(row=1, column=2, sticky="w", padx=6, pady=2)
+
+    btns = ttk.Frame(left, style="Tframe"); btns.pack(fill="x", pady=(10,6), padx=8)
+    self.add_update_btn = ttk.Buttons(btns, text="Add / Update", command=self.add_or_update_student);
+    self.add_update_btn.grid(row=0, column=0, padx=4, pady=4 sticky="ew)
+    self.delete_btn = ttk.Buttons(btns, text="Delete", command=self.delete_student);
+    self.delete_btn.grid(row=0, column=1, padx=4, pady=4 sticky="ew)
+    self.clear_btn = ttk.Buttons(btns, text="Clear Inputs", command=self.clear_student);
+    self.add_update_btn.grid(row=0, column=2, padx=4, pady=4 sticky="ew)
     ttk.Entry(frm, textvariable=self.m3_var, width=8).grid(row=1, column=3, sticky="w", padx=6, pady=2)
