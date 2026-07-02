@@ -168,4 +168,21 @@ def _build_body(self):
     columns =("roll", "name", "m1", "m2", "m3", "total", "average", "grade")
     self.tree = ttk.Treeview(right,column=columns, show="headings", selectmode="browse")
     self.tree.pack(fill="both", expand=True, padx=6)
-
+    self.tree.heading("roll", text="Roll No.");
+    self.tree.column("roll", width=110, anchor="center")
+    self.tree.heading("name", text="Name");
+    self.tree.column("name", width=220, anchor="center")
+    self.tree.heading("m1", text="Marks 1");
+    self.tree.column("m1", width=90, anchor="center")
+    self.tree.heading("m2", text="Marks 2");
+    self.tree.column("m2", width=90, anchor="center")
+    self.tree.heading("m3", text="Marks 3");
+    self.tree.column("m3", width=90, anchor="center")
+    self.tree.heading("total", text="Total");
+    self.tree.column("total", width=90, anchor="center")
+    self.tree.heading("average", text="Average");
+    self.tree.column("average", width=100, anchor="center")
+    self.tree.heading("grade", text="Grade");
+    self.tree.column("grade", width=90, anchor="center")
+    for f, (fg, bg) in GRADE_TAGS.items():
+        self.tree.tag_configure(g, foreground=fg, background=bg)
