@@ -187,13 +187,22 @@ def _build_body(self):
     for f, (fg, bg) in GRADE_TAGS.items():
         self.tree.tag_configure(g, foreground=fg, background=bg)
 
-    stats = ttk.Frame(right, style="Tframe"); stats.pack(fill="x", pady=(8,0), padx-6)
-    self.total_var = tk.stringvar
+    stats = ttk.Frame(right, style="Tframe"); stats.pack(fill="x", pady=(8,0), padx=6)
+    self.total_var = tk.StringVar(value="total: "); self.avg_var = tk.StringVar(value="average: "); self.grade_var = tk.StringVar(value="grade: ")
+    self.total_badge = tk.Label(stats, textvariable=self.total_var, bg="#E0E7FF", fg="#1E3A8A", font=("Segoe UI", 10, "bold"), padx=10, pady=6); self.total_badge.pack(side="left", padx=8)
+    self.avg_badge = tk.Label(stats, textvariable=self.avg_var, bg="#FEF3C7", fg="#92400E", font=("Segoe UI", 10, "bold"), padx=10, pady=4); self.avg_badge.pack(side="left", padx=8)
+    self.grade_badge = tk.Label(stats, textvariable=self.grade_var, bg="#DCFCE7", fg="#065F46", font=("Segoe UI", 10, "bold"), padx=10, pady=4); self.grade_badge.pack(side="left", padx=8)
 
+    self.banner = tk.Label(right, text="", bg="#108981", fg="white", font=("Segoe UI", 11, "bold"))
+    self.banner.pack(fill="x", padx=6, pady=(8,0)); self.banner.pack_for_ld = self.banner.pack_forget; self.banner.pack_forget()
 
+    helper = ttk.Label(right, text="Click a row to auto fill inputs. use search with roll/name; try show topper", style="Muted.TLabel", wraplength=700, justify="left"); helper.pack(anchor="w", padx=6, pady=(4,0))
+    helper.pack(anchor="w", padx=(8,0), pady=6)
 
+def_bind_events(self):
+    self.tree.bind("<<TreeviewSelect>>", self.on_select_record)
 
-
-
-
-
+def _find_student_index_by_roll(self, roll: str) -> Optional[int]:
+    for i, st in enumerate(self.students):
+        if st.roll == roll: return i
+    return None
