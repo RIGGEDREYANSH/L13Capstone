@@ -186,3 +186,14 @@ def _build_body(self):
     self.tree.column("grade", width=90, anchor="center")
     for f, (fg, bg) in GRADE_TAGS.items():
         self.tree.tag_configure(g, foreground=fg, background=bg)
+
+    stats = ttk.Frame(right, style="Tframe"); stats.pack(fill="x", pady=(8,0), padx-6)
+    self.total_var = tk.stringvar
+
+
+
+
+
+
+
+
