@@ -198,11 +198,22 @@ def _build_body(self):
 
     helper = ttk.Label(right, text="Click a row to auto fill inputs. use search with roll/name; try show topper", style="Muted.TLabel", wraplength=700, justify="left"); helper.pack(anchor="w", padx=6, pady=(4,0))
     helper.pack(anchor="w", padx=(8,0), pady=6)
+    
 
-def_bind_events(self):
+def _bind_events(self):
     self.tree.bind("<<TreeviewSelect>>", self.on_select_record)
 
 def _find_student_index_by_roll(self, roll: str) -> Optional[int]:
     for i, st in enumerate(self.students):
         if st.roll == roll: return i
     return None
+
+def _parse_marks(self, m1: str, m2: str, m3: str) -> List[int]:
+    try:
+        nums = [int(m1), int(m2), int(m3)]
+    except ValueError:
+        raise ValueError("Marks must be integers (0-100).")
+
+
+
+
