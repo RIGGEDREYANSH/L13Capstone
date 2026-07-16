@@ -305,17 +305,14 @@ class TrackerFrame(ttk.Frame):
     
     def _show_banner(self, text: str, color="#10B981", timeout=1400):
         self.banner.configure(text=text, bg=color)
-        self.banner.pack(fill="x", padx=6, pady(8,0))
+        self.banner.pack(fill="x", padx=6, pady=(8,0))
         self. after(timeout, lambda: self.banner.pack_forget())
 
     def show_topper(self):
         if not self.students:
-            messsgebox.showinfo("Topper", "No records available."); return
+            messagebox.showinfo("Topper", "No records available."); return
         topper_idx = max(range(len(self.students)), key=lambda i: self.students[i].average())
         topper = self.students[topper_idx]
         messagebox.showinfo("Topper", f"Topper: {topper.roll} - {topper.name}\nAverage: {topper.average()} | Grade
         self.tree selection_set(topper.roll); self.tree.see(topper.roll); self._update_badges_for(topper)
         self._show_banner(f"🎉 Topper: {topper.name}!")
-
-
-
