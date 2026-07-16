@@ -277,3 +277,28 @@ class TrackerFrame(ttk.Frame):
             self._update_badges_for(self.students[self._find_student_index_by_roll(roll)])
         except Exception as e:
             messagebox.showerror("Input Error", str(e))
+
+    def delete_student(self):
+        sel = self.tree.selection()
+        if not sel:
+            messagebox.showwarning("Select Record", "Please select a recors to delete"); return
+        roll = sel[0]; idx = self._find_student_index_by_roll(roll)
+        if idx is None: return
+        st = self.students[idx]
+        if messagebox.askyesno("Delete", f"Delete {st.roll} - {st.name}?"):
+            del self.students[idx]; self._refersh_tree(); self.clear_inputs
+
+    def search_student(self):
+        query = self.roll_var.get().strip() or self.name_var.get().strip()
+        if not query:
+            messagebox.showinfo("Search", "Type a Roll No. or Name (or part) in inputs, then click Search."); return
+        q = query.lower(); self.tree.selection_remove(self.tree.selection())
+        hits = [st.roll for st in self.students if q in st.roll.lower() or q in st.name.lower()]
+        if not hits:
+            messagebox.showinfo("Search", f"No matches for \"query\"."); self._update_badges_for(None); return
+        for rid in hits: self.tree.selection_add(rid); self.tree.see(rid)
+        if len(hits) ==1:
+            idx = self._find_student_index_by_roll(hits[0])
+            if idx is not None: self._update_badges_for(self.students[idx])
+        else:
+            self._update_badges_for(None)
