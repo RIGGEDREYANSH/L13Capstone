@@ -313,6 +313,32 @@ class TrackerFrame(ttk.Frame):
             messagebox.showinfo("Topper", "No records available."); return
         topper_idx = max(range(len(self.students)), key=lambda i: self.students[i].average())
         topper = self.students[topper_idx]
-        messagebox.showinfo("Topper", f"Topper: {topper.roll} - {topper.name}\nAverage: {topper.average()} | Grade
-        self.tree selection_set(topper.roll); self.tree.see(topper.roll); self._update_badges_for(topper)
+        messagebox.showinfo("Topper", f"Topper: {topper.roll} - {topper.name}\nAverage: {topper.average()} | Grade:{topper.grade()}")
+        self.tree.selection_set(topper.roll); self.tree.see(topper.roll); self._update_badges_for(topper)
         self._show_banner(f"🎉 Topper: {topper.name}!")
+
+    def save_to_csv(self):
+        if not self.students:
+            messagebox.showwarning("Save CSV", "No records to save."); return 
+        path = filedialog.askopenfilename(title="Save CSV", defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
+        if not path: return
+        try:
+            with open(path,"w", newline="", encoding="utf-8")as f:
+                writer = csv.writer(f)
+                writer.writerow(["roll","name","marks1","marks2","marks3","total","average","grade"])
+                for st in self.students:
+                    writer.writerow([st.roll, st.name, st.marks[0], st.marks[1], st.marks[2]. st.total(), st.average(), st.grade()])
+                    messagebox.showinfo("Saved", f"Saved {len(self.students)} records to:\n{path}")
+
+        except PermissionError:
+            messagebox.showerror("Permission Denied", "Close the file if it is open elsewhere and tryagain.")
+        except Exception as e:
+            messagebox.showerror("Save Error", f"Could not save file:\n{e}")
+
+    def load_from_csv(self):
+        path = filedialog.askopenfilename(title="Load CSV", filetypes=[("CSV files", "*.csv")])
+        if not path: return
+        try:
+            loaded: List[Student] = []
+            with open(path, "r", encoding="utf-8") as f:
+                reader = csv.reader(f); header = next(reader, None)
